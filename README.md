@@ -1,6 +1,6 @@
 # TeleZipper
 
-Split folders into multiple 2GB zip files with optional Telegram upload.
+Split folders into multiple 50MB zip files with optional Telegram upload.
 
 [![npm version](https://img.shields.io/npm/v/@ayush24k/telezipper.svg)](https://www.npmjs.com/package/@ayush24k/telezipper)
 [![npm downloads](https://img.shields.io/npm/dm/@ayush24k/telezipper.svg)](https://www.npmjs.com/package/@ayush24k/telezipper)
@@ -141,7 +141,7 @@ telezipper ./my-project -p MySecurePassword123 --telegram --bot-token 123456:ABC
 
 ## Features
 
-- ✅ Automatically splits large folders into 2GB chunks
+- ✅ Automatically splits large folders into 50MB chunks
 - ✅ Creates zip files with maximum compression
 - ✅ Password protection with AES-256 encryption
 - ✅ Optional Telegram upload with progress bars
