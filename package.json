@@ -1,0 +1,25 @@
+{
+  "name": "telezipper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "cli-progress": "^3.12.0",
+    "commander": "^14.0.2",
+    "dotenv": "^17.2.3",
+    "node-telegram-bot-api": "^0.67.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.1.0",
+    "@types/node-telegram-bot-api": "^0.64.13",
+    "typescript": "^5.9.3"
+  }
+}
