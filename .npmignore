@@ -1,0 +1,6 @@
+src/
+bin/
+.env
+tsconfig.json
+*.log
+node_modules

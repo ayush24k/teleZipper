@@ -9,7 +9,9 @@ import { uploadToTelegram } from "./telegramUploader";
 export async function zipChunks(
     chunks: FileInfo[][],
     outputDir: string,
-    useTelegram: boolean
+    useTelegram: boolean,
+    botToken?: string,
+    chatId?: string
 ) {
     fs.mkdirSync(outputDir, { recursive: true });
 
@@ -39,7 +41,7 @@ export async function zipChunks(
             output.on("close", () => {
                 progressBar.stop();
                 if (useTelegram) {
-                    uploadQueue.push(uploadToTelegram(zipPath));
+                    uploadQueue.push(uploadToTelegram(zipPath, botToken, chatId));
                 };
                 resolve();
             });

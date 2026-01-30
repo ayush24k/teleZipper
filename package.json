@@ -1,10 +1,12 @@
 {
-  "name": "telezipper",
+  "name": "@ayush24k/telezipper",
   "version": "1.0.0",
   "description": "Split folders into multiple 2GB zip files with optional Telegram upload made for personal use.",
-  "main": "index.js",
+  "files": [
+    "dist"
+  ],
   "bin": {
-    "telezipper": "./dist/bin/zipper.js"
+    "telezipper": "dist/bin/zipper.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
