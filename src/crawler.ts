@@ -2,14 +2,14 @@ import fs from 'fs';
 import path from 'path';
 
 
-export interface FileInfro {
+export interface FileInfo {
     path: string;
     size: number;
 }
 
 
 // walks folder recursively and returns list of files with their sizes
-export async function crawl(target: string, files: FileInfro[] = []): Promise<FileInfro[]> {
+export async function crawl(target: string, files: FileInfo[] = []): Promise<FileInfo[]> {
     const stats = fs.statSync(target);
 
     if (stats.isFile()) {

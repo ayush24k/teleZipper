@@ -1,12 +1,12 @@
-import type { FileInfro } from "./crawler";
+import type { FileInfo } from "./crawler";
 
 const CHUNK_SIZE = 2 * 1024 * 1024 * 1024; // 2 GB
 
 
 // groups files into chunks where the total size of each chunk does not exceed CHUNK_SIZE
-export function chunkFiles(files: FileInfro[]): FileInfro[][] {
-    const chunks: FileInfro[][] = [];
-    let currentChunk: FileInfro[] = [];
+export function chunkFiles(files: FileInfo[]): FileInfo[][] {
+    const chunks: FileInfo[][] = [];
+    let currentChunk: FileInfo[] = [];
     let currentChunkSize = 0;
 
     for (const file of files) {
