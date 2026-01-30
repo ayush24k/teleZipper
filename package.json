@@ -1,21 +1,25 @@
 {
   "name": "telezipper",
   "version": "1.0.0",
-  "description": "",
+  "description": "Split folders into multiple 2GB zip files with optional Telegram upload made for personal use.",
   "main": "index.js",
+  "bin": {
+    "telezipper": "./dist/bin/zipper.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
     "archiver": "^7.0.1",
     "cli-progress": "^3.12.0",
     "commander": "^14.0.2",
     "dotenv": "^17.2.3",
-    "node-telegram-bot-api": "^0.67.0"
+    "node-telegram-bot-api": "^0.67.0",
+    "tough-cookie": "^2.5.0"
   },
   "devDependencies": {
     "@types/archiver": "^7.0.0",
