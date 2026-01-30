@@ -1,6 +1,6 @@
 {
   "name": "@ayush24k/telezipper",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Split folders into multiple 2GB zip files with optional Telegram upload made for personal use.",
   "files": [
     "dist"
@@ -31,6 +31,7 @@
   "license": "ISC",
   "dependencies": {
     "archiver": "^7.0.1",
+    "archiver-zip-encrypted": "^2.0.0",
     "cli-progress": "^3.12.0",
     "commander": "^14.0.2",
     "dotenv": "^17.2.3",

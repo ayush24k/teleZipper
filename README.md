@@ -44,6 +44,17 @@ Example:
 telezipper ./my-folder -o ./output
 ```
 
+### With Password Protection
+
+```bash
+telezipper <source> -p <password> -o <output-directory>
+```
+
+Example:
+```bash
+telezipper ./my-folder -p MySecurePassword123 -o ./output
+```
+
 ### With Telegram Upload
 
 You can provide Telegram credentials in two ways:
@@ -77,6 +88,7 @@ telezipper ./my-folder --telegram
 
 - `<source>` - File or folder to zip (required)
 - `-o, --output <dir>` - Output directory (default: "output")
+- `-p, --password <password>` - Password to protect zip files (optional)
 - `--telegram` - Upload zip files to Telegram
 - `--bot-token <token>` - Telegram bot token (required if using --telegram without env vars)
 - `--chat-id <id>` - Telegram chat ID (required if using --telegram without env vars)
@@ -109,6 +121,16 @@ export TELEGRAM_CHAT_ID=987654321
 telezipper ./my-project --telegram
 ```
 
+### Zip with password protection
+```bash
+telezipper ./my-project -p MySecurePassword123
+```
+
+### Zip with password and upload to Telegram
+```bash
+telezipper ./my-project -p MySecurePassword123 --telegram --bot-token 123456:ABC-DEF --chat-id 987654321
+```
+
 ## How to Get Telegram Credentials
 
 1. **Bot Token**: Create a bot using [@BotFather](https://t.me/botfather) on Telegram
@@ -121,6 +143,7 @@ telezipper ./my-project --telegram
 
 - ✅ Automatically splits large folders into 2GB chunks
 - ✅ Creates zip files with maximum compression
+- ✅ Password protection with AES-256 encryption
 - ✅ Optional Telegram upload with progress bars
 - ✅ Works from any directory on your system
 - ✅ Flexible credential management (CLI args or env vars)

@@ -3,15 +3,20 @@ import fs from "fs";
 import path from "path";
 import cliProgress from "cli-progress";
 import archiver from "archiver";
+// @ts-ignore - archiver-zip-encrypted doesn't have types
+import archiverZipEncrypted from "archiver-zip-encrypted";
 import { uploadToTelegram } from "./telegramUploader";
 
+// Register the encrypted format
+archiver.registerFormat('zip-encrypted', archiverZipEncrypted);
 
 export async function zipChunks(
     chunks: FileInfo[][],
     outputDir: string,
     useTelegram: boolean,
     botToken?: string,
-    chatId?: string
+    chatId?: string,
+    password?: string
 ) {
     fs.mkdirSync(outputDir, { recursive: true });
 
@@ -35,7 +40,15 @@ export async function zipChunks(
 
         await new Promise<void>((resolve, reject) => {
             const output = fs.createWriteStream(zipPath);
-            const archive = archiver("zip", { zlib: { level: 9 } });
+
+            // Use encrypted archiver if password is provided
+            const archive = password
+                ? archiver("zip-encrypted" as any, {
+                    zlib: { level: 9 },
+                    encryptionMethod: 'aes256',
+                    password: password
+                } as any)
+                : archiver("zip", { zlib: { level: 9 } });
 
             archive.pipe(output);
 
