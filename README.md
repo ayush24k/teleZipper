@@ -2,11 +2,27 @@
 
 Split folders into multiple 2GB zip files with optional Telegram upload.
 
+[![npm version](https://img.shields.io/npm/v/@ayush24k/telezipper.svg)](https://www.npmjs.com/package/@ayush24k/telezipper)
+[![npm downloads](https://img.shields.io/npm/dm/@ayush24k/telezipper.svg)](https://www.npmjs.com/package/@ayush24k/telezipper)
+
 ## Installation
 
-Install globally using npm link:
+### Option 1: Install from npm (Recommended)
+
+Install globally from npm:
 
 ```bash
+npm install -g @ayush24k/telezipper
+```
+
+Now you can use `telezipper` from anywhere on your system!
+
+### Option 2: Install from source
+
+Clone the repository and link locally:
+
+```bash
+git clone https://github.com/ayush24k/teleZipper.git
 cd /path/to/telezipper
 npm install
 npm run build
