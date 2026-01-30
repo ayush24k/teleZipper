@@ -23,14 +23,15 @@ program
   const botToken = program.opts().botToken;
   const chatId = program.opts().chatId;
 
-  console.log(`🕸️ Crawling files in ${source}...`);
+  console.log(`\n🕸️  Crawling files in ${source}...`);
   const files = await crawl(source);
 
-  console.log(`📂 Found ${files.length} files. Chunking...`);
+  console.log(`📂 Found ${files.length} file${files.length !== 1 ? 's' : ''}`);
+
   const chunks = chunkFiles(files);
-  console.log(`📦 Created ${chunks.length} chunks. Zipping...`);
+  console.log(`📦 Created ${chunks.length} chunk${chunks.length !== 1 ? 's' : ''} (max 2GB each)\n`);
 
   await zipChunks(chunks, outputDir, useTelegram, botToken, chatId);
 
-  console.log("🎉 process done!");
+  console.log(`\n🎉 All done! ${useTelegram ? 'Files uploaded to Telegram.' : `Zips saved to ${outputDir}`}`);
 })();

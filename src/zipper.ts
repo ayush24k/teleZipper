@@ -21,7 +21,8 @@ export async function zipChunks(
         const zipName = `chunk_${i + 1}.zip`;
         const zipPath = path.join(outputDir, zipName);
 
-        console.log(`📦 Zipping ${zipName}`);
+        console.log(`📦 Zipping ${zipName}...`);
+
 
         const progressBar = new cliProgress.SingleBar(
             {
@@ -58,7 +59,7 @@ export async function zipChunks(
     }
 
     if (useTelegram) {
-        console.log("🚀 Uploading all zips to Telegram...");
+        console.log("\n🚀 Uploading all files to Telegram...");
         await Promise.all(uploadQueue);
     }
 }
