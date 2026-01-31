@@ -1,6 +1,6 @@
 {
   "name": "@ayush24k/telezipper",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Split folders into multiple 50MB zip files with optional Telegram upload made for personal use.",
   "files": [
     "dist"
@@ -35,14 +35,14 @@
     "cli-progress": "^3.12.0",
     "commander": "^14.0.2",
     "dotenv": "^17.2.3",
-    "node-telegram-bot-api": "^0.67.0",
+    "input": "^1.0.1",
+    "telegram": "^2.26.22",
     "tough-cookie": "^2.5.0"
   },
   "devDependencies": {
     "@types/archiver": "^7.0.0",
     "@types/cli-progress": "^3.11.6",
     "@types/node": "^25.1.0",
-    "@types/node-telegram-bot-api": "^0.64.13",
     "typescript": "^5.9.3"
   }
 }

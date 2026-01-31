@@ -44,39 +44,22 @@ Example:
 telezipper ./my-folder -o ./output
 ```
 
-### With Password Protection
+### Chunking + Upload to Telegram (MTProto)
+This tool now uses **MTProto** (the Telegram Client Protocol) to support **large file uploads (up to 2GB or more)** and faster speeds. 
 
+To use it, you need a `TELEGRAM_API_ID` and `TELEGRAM_API_HASH`. You can get these from [my.telegram.org](https://my.telegram.org).
+
+You can pass them as arguments:
 ```bash
-telezipper <source> -p <password> -o <output-directory>
+telezipper ./my-folder --telegram --api-id 12345 --api-hash abcdef12345 --chat-id -100123456789
 ```
 
-Example:
-```bash
-telezipper ./my-folder -p MySecurePassword123 -o ./output
-```
+Or set them in a `.env` file in your current directory:
+```env
+TELEGRAM_API_ID=123456
+TELEGRAM_API_HASH=abcdef1234567890
+TELEGRAM_CHAT_ID=-1001234567890
 
-### With Telegram Upload
-
-You can provide Telegram credentials in two ways:
-
-#### Option 1: Command-line arguments (Recommended for flexibility)
-
-```bash
-telezipper <source> --telegram --bot-token YOUR_BOT_TOKEN --chat-id YOUR_CHAT_ID
-```
-
-Example:
-```bash
-telezipper ./my-folder --telegram --bot-token 123456:ABC-DEF1234ghIkl --chat-id 987654321
-```
-
-#### Option 2: Environment variables
-
-Create a `.env` file in the project directory or set environment variables:
-
-```bash
-TELEGRAM_BOT_TOKEN=your_bot_token_here
-TELEGRAM_CHAT_ID=your_chat_id_here
 ```
 
 Then run:
@@ -84,66 +67,29 @@ Then run:
 telezipper ./my-folder --telegram
 ```
 
+### Logging In
+- **User Login**: The tool will ask for your phone number and login code interactively. This session is saved locally in `.telegram_session`.
+
 ## Options
 
 - `<source>` - File or folder to zip (required)
 - `-o, --output <dir>` - Output directory (default: "output")
 - `-p, --password <password>` - Password to protect zip files (optional)
 - `--telegram` - Upload zip files to Telegram
-- `--bot-token <token>` - Telegram bot token (required if using --telegram without env vars)
-- `--chat-id <id>` - Telegram chat ID (required if using --telegram without env vars)
+- `--api-id <id>` - Telegram API ID (required for MTProto)
+- `--api-hash <hash>` - Telegram API Hash (required for MTProto)
+- `--chat-id <id>` - Chat ID to upload to (User ID or Channel/Group ID)
 - `-h, --help` - Display help
-
-## Examples
-
-### Zip a folder to the default output directory
-```bash
-telezipper ./my-project
-```
-
-### Zip and specify custom output directory
-```bash
-telezipper ./my-project -o ./backups
-```
-
-### Zip and upload to Telegram with inline credentials
-```bash
-telezipper ./my-project --telegram --bot-token 123456:ABC-DEF --chat-id 987654321
-```
-
-### Zip and upload using environment variables
-```bash
-# Set environment variables first
-export TELEGRAM_BOT_TOKEN=123456:ABC-DEF
-export TELEGRAM_CHAT_ID=987654321
-
-# Then run
-telezipper ./my-project --telegram
-```
-
-### Zip with password protection
-```bash
-telezipper ./my-project -p MySecurePassword123
-```
-
-### Zip with password and upload to Telegram
-```bash
-telezipper ./my-project -p MySecurePassword123 --telegram --bot-token 123456:ABC-DEF --chat-id 987654321
-```
-
-## How to Get Telegram Credentials
-
-1. **Bot Token**: Create a bot using [@BotFather](https://t.me/botfather) on Telegram
-2. **Chat ID**: 
-   - Send a message to your bot
-   - Visit `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates`
-   - Find your chat ID in the response
 
 ## Features
 
-- ✅ Automatically splits large folders into 50MB chunks
-- ✅ Creates zip files with maximum compression
-- ✅ Password protection with AES-256 encryption
-- ✅ Optional Telegram upload with progress bars
-- ✅ Works from any directory on your system
-- ✅ Flexible credential management (CLI args or env vars)
+- 🚀 **MTProto Support**: Uploads files >50MB (tested up to 2GB).
+- 🔐 **Encrypted Zips**: Optional AES-256 password protection.
+- ⚡ **Parallel Chunking**: Zips chunks in parallel for faster processing.
+- ⏯️ **Serial Uploads**: Uploads files one by one with a random delay (2-5s) to avoid flood limits.
+- 💾 **Smart Chunking**: Splits large folders into zip chunks (max 1.8GB each).
+- ✅ **MTProto Auth**: Support for User accounts with session persistence.
+
+## How to Get Telegram Credentials
+1. **API ID & Hash**: Go to [my.telegram.org](https://my.telegram.org), log in, and click "API development tools". Create a new application to get your `App api_id` and `App api_hash`.
+2. **Chat ID**: You can get your Chat ID by forwarding a message to a bot like @userinfobot. For channels/groups, it usually starts with `-100`.
