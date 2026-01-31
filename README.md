@@ -99,7 +99,7 @@ telezipper ./my-folder --telegram -p "mypassword"
 
 - 🚀 **MTProto Support**: Uploads files >50MB (tested up to 2GB).
 - 🔐 **Encrypted Zips**: Optional AES-256 password protection.
-- ⚡ **Parallel Chunking**: Zips chunks in parallel for faster processing.
+
 - ⏯️ **Serial Uploads**: Uploads files one by one with a random delay (2-5s) to avoid flood limits.
 - 💾 **Smart Chunking**: Splits large folders into zip chunks (max 2GB each).
 - ✅ **MTProto Auth**: Support for User accounts with session persistence.

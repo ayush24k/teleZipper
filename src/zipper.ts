@@ -10,17 +10,6 @@ import { uploadToTelegram, initTelegramClient } from "./telegramUploader";
 // Register the encrypted format
 archiver.registerFormat('zip-encrypted', archiverZipEncrypted);
 
-// Helper for serial execution
-let uploadQueue = Promise.resolve();
-const queueUpload = (action: () => Promise<void>) => {
-    const next = uploadQueue.then(action).catch(err => {
-        console.error("Queue error:", err);
-        throw err;
-    });
-    uploadQueue = next.catch(() => { }); // Prevent queue from breaking on error, but we still throw for the caller
-    return next;
-};
-
 export async function zipChunks(
     chunks: FileInfo[][],
     outputDir: string,
@@ -37,12 +26,12 @@ export async function zipChunks(
         await initTelegramClient(apiId, apiHash);
     }
 
-    // Process chunks in parallel (Zipping is parallel, Uploading is queued/serial)
-    await Promise.all(chunks.map(async (chunk, i) => {
+    for (let i = 0; i < chunks.length; i++) {
+        const chunk = chunks[i];
         const zipName = `chunk_${i + 1}.zip`;
         const zipPath = path.join(outputDir, zipName);
 
-        console.log(`📦 Zipping ${zipName} (starting)...`);
+        console.log(`📦 Zipping ${zipName}...`);
 
         const progressBar = new cliProgress.SingleBar(
             {
@@ -87,15 +76,12 @@ export async function zipChunks(
         });
 
         if (useTelegram) {
-            // Queue the upload so it happens serially
-            await queueUpload(async () => {
-                // Random delay between 2 and 5 seconds
-                const delay = Math.floor(Math.random() * (5000 - 2000 + 1) + 2000);
-                console.log(`⏳ Waiting ${delay / 1000}s before uploading ${zipName}...`);
-                await new Promise((resolve) => setTimeout(resolve, delay));
+            // Random delay between 2 and 5 seconds
+            const delay = Math.floor(Math.random() * (5000 - 2000 + 1) + 2000);
+            console.log(`⏳ Waiting ${delay / 1000}s before uploading ${zipName}...`);
+            await new Promise((resolve) => setTimeout(resolve, delay));
 
-                await uploadToTelegram(zipPath, chatId);
-            });
+            await uploadToTelegram(zipPath, chatId);
         }
-    }));
+    }
 }
