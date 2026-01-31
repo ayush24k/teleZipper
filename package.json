@@ -1,6 +1,6 @@
 {
   "name": "@ayush24k/telezipper",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Split folders into multiple 50MB zip files with optional Telegram upload made for personal use.",
   "files": [
     "dist"

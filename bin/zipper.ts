@@ -33,7 +33,7 @@ program
   console.log(`📂 Found ${files.length} file${files.length !== 1 ? 's' : ''}`);
 
   const chunks = chunkFiles(files);
-  console.log(`📦 Created ${chunks.length} chunk${chunks.length !== 1 ? 's' : ''} (max 1.8GB each)${password ? ' 🔒 Password protected' : ''}\n`);
+  console.log(`📦 Created ${chunks.length} chunk${chunks.length !== 1 ? 's' : ''} (max 2GB each)${password ? ' 🔒 Password protected' : ''}\n`);
 
   await zipChunks(chunks, outputDir, useTelegram, chatId, password, apiId, apiHash);
 

@@ -45,26 +45,40 @@ telezipper ./my-folder -o ./output
 ```
 
 ### Chunking + Upload to Telegram (MTProto)
-This tool now uses **MTProto** (the Telegram Client Protocol) to support **large file uploads (up to 2GB or more)** and faster speeds. 
+This tool now uses **MTProto** (the Telegram Client Protocol) to support **large file uploads (up to 2GB)** and faster speeds. 
 
 To use it, you need a `TELEGRAM_API_ID` and `TELEGRAM_API_HASH`. You can get these from [my.telegram.org](https://my.telegram.org).
 
-You can pass them as arguments:
+You can pass them as arguments or set them in a `.env` file.
+
+### Usage Examples
+
+#### 1. Basic Zip (No Password, No Telegram)
 ```bash
-telezipper ./my-folder --telegram --api-id 12345 --api-hash abcdef12345 --chat-id -100123456789
+telezipper ./my-folder
+# Output: ./output/chunk_1.zip
 ```
 
-Or set them in a `.env` file in your current directory:
-```env
-TELEGRAM_API_ID=123456
-TELEGRAM_API_HASH=abcdef1234567890
-TELEGRAM_CHAT_ID=-1001234567890
-
+#### 2. Zip with Password
+```bash
+telezipper ./my-folder -p "secret123"
+# Output: Encrypted zip files in ./output
 ```
 
-Then run:
+#### 3. Zip + Upload to Telegram (Env Vars Set)
+Assuming `.env` has credentials:
 ```bash
 telezipper ./my-folder --telegram
+```
+
+#### 4. Zip + Upload to Telegram (CLI Args)
+```bash
+telezipper ./my-folder --telegram --api-id 12345 --api-hash abcdef123 --chat-id -100123456789
+```
+
+#### 5. Password Protected Upload
+```bash
+telezipper ./my-folder --telegram -p "mypassword"
 ```
 
 ### Logging In
@@ -87,7 +101,7 @@ telezipper ./my-folder --telegram
 - 🔐 **Encrypted Zips**: Optional AES-256 password protection.
 - ⚡ **Parallel Chunking**: Zips chunks in parallel for faster processing.
 - ⏯️ **Serial Uploads**: Uploads files one by one with a random delay (2-5s) to avoid flood limits.
-- 💾 **Smart Chunking**: Splits large folders into zip chunks (max 1.8GB each).
+- 💾 **Smart Chunking**: Splits large folders into zip chunks (max 2GB each).
 - ✅ **MTProto Auth**: Support for User accounts with session persistence.
 
 ## How to Get Telegram Credentials

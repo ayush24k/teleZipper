@@ -1,6 +1,6 @@
 import type { FileInfo } from "./crawler";
 
-const CHUNK_SIZE = 1.8 * 1024 * 1024 * 1024; // 1.8 GB
+const CHUNK_SIZE = 1.9 * 1024 * 1024 * 1024; // 1.9 GB
 
 
 // groups files into chunks where the total size of each chunk does not exceed CHUNK_SIZE
@@ -11,7 +11,7 @@ export function chunkFiles(files: FileInfo[]): FileInfo[][] {
 
     for (const file of files) {
         if (file.size > CHUNK_SIZE) {
-            console.warn(`⚠️ Skipping file ${file.path} as it exceeds the maximum size of 1.8GB (${(file.size / (1024 *  1024 * 1024)).toFixed(2)} GB).`);
+            console.warn(`⚠️ Skipping file ${file.path} as it exceeds the maximum size of 1.9GB (${(file.size / (1024 *  1024 * 1024)).toFixed(2)} GB).`);
             continue;
         }
 
