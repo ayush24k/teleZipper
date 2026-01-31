@@ -1,6 +1,6 @@
 # TeleZipper
 
-Split folders into multiple 50MB zip files with optional Telegram upload.
+Split folders into multiple 2GB zip files with optional Telegram upload.
 
 [![npm version](https://img.shields.io/npm/v/@ayush24k/telezipper.svg)](https://www.npmjs.com/package/@ayush24k/telezipper)
 [![npm downloads](https://img.shields.io/npm/dm/@ayush24k/telezipper.svg)](https://www.npmjs.com/package/@ayush24k/telezipper)
